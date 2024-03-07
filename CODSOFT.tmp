@@ -1,0 +1,185 @@
+tic tac toe 
+
+tic tac toe 
+
+// C++ program to implement tic tac toe game 
+#include <iostream> 
+using namespace std; 
+
+// Function to draw the Tic-Tac-Toe board 
+void drawBoard(char board[3][3]) 
+{ 
+	cout << "-------------\n"; 
+	for (int i = 0; i < 3; i++) { 
+		cout << "| "; 
+		for (int j = 0; j < 3; j++) { 
+			cout << board[i][j] << " | "; 
+		} 
+		cout << "\n-------------\n"; 
+	} 
+} 
+
+// Function to check for a win 
+bool checkWin(char board[3][3], char player) 
+{ 
+	// Check rows, columns, and diagonals 
+	for (int i = 0; i < 3; i++) { 
+		if (board[i][0] == player && board[i][1] == player 
+			&& board[i][2] == player) 
+			return true; 
+		if (board[0][i] == player && board[1][i] == player 
+			&& board[2][i] == player) 
+			return true; 
+	} 
+	if (board[0][0] == player && board[1][1] == player 
+		&& board[2][2] == player) 
+		return true; 
+	if (board[0][2] == player && board[1][1] == player 
+		&& board[2][0] == player) 
+		return true; 
+	return false; 
+} 
+
+int main() 
+{ 
+	// Initialize the board and players 
+	char board[3][3] = { { ' ', ' ', ' ' }, 
+						{ ' ', ' ', ' ' }, 
+						{ ' ', ' ', ' ' } }; 
+	char player = 'X'; 
+	int row, col; 
+	int turn; // Declare turn here 
+
+	cout << "Welcome to Tic-Tac-Toe!\n"; 
+
+	// Game loop 
+	for (turn = 0; turn < 9; turn++) { 
+		// Draw the board 
+		drawBoard(board); 
+
+		// Prompt for valid input 
+		while (true) { 
+			cout << "Player " << player 
+				<< ", enter row (0-2) and column (0-2): "; 
+			cin >> row >> col; 
+
+			if (board[row][col] != ' ' || row < 0 || row > 2 
+				|| col < 0 || col > 2) { 
+				cout << "Invalid move. Try again.\n"; 
+			} 
+			else { 
+				break; // Valid input, exit the loop. 
+			} 
+		} 
+
+		// Make the move 
+		board[row][col] = player; 
+
+		// Check for a win after making a move 
+		if (checkWin(board, player)) { 
+			drawBoard(board); 
+			cout << "Player " << player << " wins!\n"; 
+			break; // Exit the loop after a win. 
+		} 
+
+		// Switch to the other player 
+		player = (player == 'X') ? 'O' : 'X'; 
+	} 
+
+	// End of the game 
+	drawBoard(board); 
+
+	// Check for a draw 
+	if (turn == 9 && !checkWin(board, 'X') 
+		&& !checkWin(board, 'O')) { 
+		cout << "It's a draw!\n"; 
+	} 
+
+	return 0; 
+}
+
+
+
+calculator
+
+calculator
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    float num1, num2, result;
+    char operation;
+
+    cout << "Enter first number: ";
+    cin >> num1;
+
+    cout << "Enter second number: ";
+    cin >> num2;
+
+    cout << "Enter operation (+, -, *, /): ";
+    cin >> operation;
+
+    switch(operation) {
+        case '+':
+            result = num1 + num2;
+            cout << "Result: " << result;
+            break;
+        case '-':
+            result = num1 - num2;
+            cout << "Result: " << result;
+            break;
+        case '*':
+            result = num1 * num2;
+            cout << "Result: " << result;
+            break;
+        case '/':
+            if(num2 != 0) {
+                result = num1 / num2;
+                cout << "Result: " << result;
+            } else {
+                cout << "Error: Cannot divide by zero!";
+            }
+            break;
+        default:
+            cout << "Error: Invalid operation!";
+    }
+
+    return 0;
+}
+
+
+number guessing game
+
+number guessing
+
+
+
+#include <iostream>
+#include <cstdlib> // for rand() and srand()
+#include <ctime> // for time()
+
+int main() {
+    srand(time(0)); // seed the random number generator
+    
+    int randomNumber = rand() % 100 + 1; // generate random number between 1 and 100
+    int guess;
+    
+    std::cout << "Welcome to the Guess the Number game!\n";
+    
+    do {
+        std::cout << "Guess a number between 1 and 100: ";
+        std::cin >> guess;
+        
+        if (guess > randomNumber) {
+            std::cout << "Too high! Try again.\n";
+        } else if (guess < randomNumber) {
+            std::cout << "Too low! Try again.\n";
+        } else {
+            std::cout << "Congratulations! You guessed the correct number.\n";
+        }
+    } while (guess != randomNumber);
+    
+    return 0;
+}
